@@ -1,2 +1,2 @@
-I2A2 - IA para Industria (2023)
-Exercicios do curso patrocinado por I2A2 e ABDI
+Repositorio Geral de Exercicios dos cursos
+realizados para aprendizado de IA
