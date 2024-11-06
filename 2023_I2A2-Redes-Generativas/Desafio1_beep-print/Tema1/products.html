@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Meu e-commerce - Produtos</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="Imagens/beep-print-logo.jpg" alt="Beep-Print Logo">
+            <h1>Beep-Print</h1>
+        </div>
+        <div class="header-banner">
+            <p>Impressão Digital</p>
+        </div>
+        <nav class="header-navigation">
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="products.html">Produtos</a></li>
+
+<p><a href="about.html">Nossa Empresa</a></p>
+
+<li><a href="blog.html">Blog do Setor</a></li>
+
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <h1>Página de Produtos</h1>
+    
+    <div id="product-list">
+        <!-- Lista de produtos será inserida aqui -->
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Array com os produtos
+        var products = [
+            {
+                name: "Modelo de impressão em 3D",
+                id: "PRD001",
+                price: 49.99,
+                image: "Imagens/product1.jpg"
+            },
+            {
+                name: "Filamento ABS para impressora 3D",
+                id: "PRD002",
+                price: 19.99,
+                image: "Imagens/product2.jpg"
+            },
+            {
+                name: "Placa controladora para impressora 3D",
+                id: "PRD003",
+                price: 39.99,
+                image: "Imagens/product3.jpg"
+            },
+            {
+                name: "Kit de bicos extrusores para impressora 3D",
+                id: "PRD004",
+                price: 14.99,
+                image: "Imagens/product4.jpg"
+            },
+            {
+                name: "Base magnética para impressora 3D",
+                id: "PRD005",
+                price: 9.99,
+                image: "Imagens/product5.jpg"
+            },
+            {
+                name: "Kit de ferramentas para impressão 3D",
+                id: "PRD006",
+                price: 29.99,
+                image: "Imagens/product6.jpg"
+            },
+            {
+                name: "Kit de limpeza para impressora 3D",
+                id: "PRD007",
+                price: 19.99,
+                image: "Imagens/product7.jpg"
+            },
+            {
+                name: "Resina para impressora 3D",
+                id: "PRD008",
+                price: 24.99,
+                image: "Imagens/product8.jpg"
+            },
+            {
+                name: "Placa de vidro para impressora 3D",
+                id: "PRD009",
+                price: 12.99,
+                image: "Imagens/product9.jpg"
+            },
+            {
+                name: "Adesivo para fixação de impressões 3D",
+                id: "PRD010",
+                price: 9.99,
+                image: "Imagens/product10.jpg"
+            }
+        ];
+
+        // Função para exibir a lista de produtos
+        function displayProductList() {
+            var productList = document.getElementById("product-list");
+
+            // Limpa a lista de produtos
+            productList.innerHTML = "";
+
+            // Adiciona cada produto à lista
+            products.forEach(function(product) {
+                var productItem = document.createElement("div");
+                productItem.className = "product-item";
+
+                var productName = document.createElement("h3");
+                productName.textContent = product.name;
+
+                var productId = document.createElement("p");
+                productId.textContent = "ID: " + product.id;
+
+                var productPrice = document.createElement("p");
+                productPrice.textContent = "Preço: $" + product.price.toFixed(2);
+
+                var productImage = document.createElement("img");
+                productImage.src = product.image;
+                productImage.alt = product.name;
+
+                productItem.appendChild(productName);
+                productItem.appendChild(productId);
+                productItem.appendChild(productPrice);
+                productItem.appendChild(productImage);
+
+                productList.appendChild(productItem);
+            });
+        }
+
+        // Chama a função para exibir a lista de produtos ao carregar a página
+        window.onload = displayProductList;
+    </script>
+</body>
+</html>

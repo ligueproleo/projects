@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dr. Crazy Jung - Consulta Psicológica Virtual</title>
+    <style>
+        body {
+            background-color: #111111;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .logo {
+            width: 2cm;
+            height: 2cm;
+            float: left;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .message {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .input-area {
+            margin-top: 20px;
+            background-color: white;
+            padding: 10px;
+            height: 120px;
+            overflow-y: auto;
+            border-radius: 5px;
+        }
+        .output-area {
+            margin-top: 20px;
+            background-color: white;
+            padding: 10px;
+            height: 120px;
+            overflow-y: auto;
+            border-radius: 5px;
+        }
+        .footer {
+            font-size: 12px;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #337ab7;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="logo" src="static/crazy_jung.png" alt="Crazy Jung Logo">
+        <div class="title">Crazy Jung Therapy</div>
+        <div class="message">Quer consultar com o Crazy Jung? Tem certeza?</div>
+        
+        <div class="input-area">
+            <textarea id="userInput" rows="5" style="width: 100%;" placeholder="Digite sua pergunta..."></textarea>
+            <button class="button" onclick="sendMessage()">Enviar</button>
+        </div>
+        
+        <div class="output-area" id="responseArea"></div>
+        
+        <div class="footer">O Dr. Crazy Jung é faketherapist. Procure alguém confiável.</div>
+    </div>
+    
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("userInput").value;
+            var responseArea = document.getElementById("responseArea");
+            responseArea.innerHTML += '<p style="background-color: #f0f0f0; padding: 5px; border-radius: 5px; margin: 5px 0;">Você: ' + userInput + '</p>';
+            document.getElementById("userInput").value = "";
+
+            import streamlit as st
+import openai
+
+# Configuração da API do OpenAI
+openai.api_key = "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"
+
+# Lista para armazenar o histórico da conversa
+conversation_history = []
+
+# Função para interagir com a LLM ChatGPT3+
+def interact_with_chatbot(question):
+    conversation_history.append(f"Usuário: {question}")
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt="\n".join(conversation_history),
+        max_tokens=50
+    )
+    conversation_history.append(f"Psicólogo Virtual: {response.choices[0].text.strip()}")
+    return response.choices[0].text.strip()
+
+# Interface do Streamlit
+def main():
+    st.title("Dr. Crazy Jung - Consulta Psicológica Virtual")
+    st.image("static/logo.png", use_column_width=True)
+    st.write("Bem-vindo! Eu sou o Dr. Crazy Jung, um psicólogo Junguiano. O risco de ser atendido por mim é todo seu.")
+    
+    user_input = st.text_area("Faça sua pergunta (estilo psicologia de Carl Jung):")
+
+    if st.button("Enviar"):
+        if user_input.strip():
+            response = interact_with_chatbot(user_input)
+            conversation_history.append(f"Usuário: {user_input}")
+            conversation_history.append(f"Psicólogo Virtual: {response}")
+
+    st.text_area("Conversa:", "\n".join(conversation_history), height=300)
+
+    st.text("O Dr. Crazy Jung só dá dicas para você. Sempre que puder, procure um psicólogo sério.")
+
+if __name__ == "__main__":
+    main()
+
+        }
+    </script>
+</body>
+</html>
+

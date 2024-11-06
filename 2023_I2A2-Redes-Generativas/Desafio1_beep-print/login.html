@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Meu e-commerce - Login</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-language">
+            <select id="language" name="language" onchange="changeLanguage()">
+                <option value="pt-br">Português Brasileiro</option>
+                <option value="en">Inglês Internacional</option>
+                <option value="es">Espanhol Latino-americano</option>
+            </select>
+        </div>
+        <div class="header-logo">
+            <img src="Imagens/beep-print-logo.jpg" alt="Beep-Print Logo">
+            <h1>Beep-Print</h1>
+        </div>
+        <div class="header-banner">
+            <p>Impressão Digital</p>
+        </div>
+        <nav class="header-navigation">
+            <ul>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="products.html">Produtos</a></li>
+
+<p><a href="about.html">Nossa Empresa</a></p>
+
+                <li><a href="blog.html">Blog do Setor</a></li>
+                <li><a href="contact.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <h1>Página de Login</h1>
+    
+    <div class="login-form">
+        <form onsubmit="event.preventDefault(); login();">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Entrar</button>
+        </form>
+        
+        <div class="register-section">
+            <h3>Ainda não possui uma conta? Cadastre-se agora:</h3>
+            
+            <form onsubmit="event.preventDefault(); register();">
+                <label for="new-email">E-mail:</label>
+                <input type="email" id="new-email" name="new-email" required>
+                
+                <label for="new-password">Senha:</label>
+                <input type="password" id="new-password" name="new-password" required>
+                
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+        
+        <a href="forgotPassword.html">Esqueci minha Senha</a>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        // Limpar campos de entrada após o carregamento da página
+        window.onload = function() {
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("new-email").value = "";
+            document.getElementById("new-password").value = "";
+        };
+        
+        function login() {
+            // Lógica de verificação do login
+            
+            // Limpar campos de entrada após o login
+            document.getElementById("email").value = "";
+            document.getElementById("password").value = "";
+            
+            // Redirecionar para a página de produtos
+            window.location.href = "products.html";
+        }
+        
+        function register() {
+            // Lógica de registro do usuário
+            
+            // Limpar campos de entrada após o cadastro
+            document.getElementById("new-email").value = "";
+            document.getElementById("new-password").value = "";
+            
+            // Exibir uma mensagem de sucesso de registro na língua escolhida
+            var selectedLanguage = document.getElementById("language").value;
+            var successMessage;
+            
+            if (selectedLanguage === "pt-br") {
+                successMessage = "Cadastro realizado com sucesso!";
+            } else if (selectedLanguage === "en") {
+                successMessage = "Registration successful!";
+            } else if (selectedLanguage === "es") {
+                successMessage = "¡Registro exitoso!";
+            }
+            
+            alert(successMessage);
+        }
+        
+        function changeLanguage() {
+            var selectedLanguage = document.getElementById("language").value;
+            
+            // Lógica para alterar o idioma da interface e redirecionar para a página atualizada com o novo idioma
+            if (selectedLanguage === "pt-br") {
+                // Redirecionar para a página em Português Brasileiro
+                window.location.href = "login.html";
+            } else if (selectedLanguage === "en") {
+                // Redirecionar para a página em Inglês Internacional
+                window.location.href = "login_en.html";
+            } else if (selectedLanguage === "es") {
+                // Redirecionar para a página em Espanhol Latino-americano
+                window.location.href = "login_es.html";
+            }
+        }
+    </script>
+</body>
+</html>
